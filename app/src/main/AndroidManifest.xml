@@ -13,6 +13,10 @@
         android:theme="@style/Theme.AndroidRecap"
         tools:targetApi="31">
         <activity
+            android:name=".basic.ActivityLifecycle"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
