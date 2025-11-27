@@ -21,6 +21,10 @@
         android:theme="@style/Theme.AndroidRecap"
         tools:targetApi="31">
         <activity
+            android:name=".basic.IntentFilterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
             android:name=".basic.ActivityLifecycle"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
