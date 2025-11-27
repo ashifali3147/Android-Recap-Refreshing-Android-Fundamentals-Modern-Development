@@ -2,7 +2,7 @@
 
 package com.tlw.androidrecap
 
-import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -116,13 +116,26 @@ fun HomeScreen() {
                 ) {
                     Text("GREETINGS")
                 }
+                //Explicit Intent
                 Button(onClick = {
                     val intent = Intent(context, ActivityLifecycle::class.java)
                     context.startActivity(intent)
-                    context as Activity
+//                    context as Activity
 //                    context.finish()
                 }) {
                     Text("ACTIVITY LIFECYCLE")
+                }
+                Button(onClick = {
+                    Intent(Intent.ACTION_MAIN).also {
+                        it.`package` = "com.google.android.youtube"
+                        try {
+                            context.startActivity(it)
+                        } catch (e: ActivityNotFoundException) {
+                            showSnackBar("App not found\nError: ${e.message}", scope, snackbarHostState)
+                        }
+                    }
+                }) {
+                    Text("Open Youtube")
                 }
             }
         }
