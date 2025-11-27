@@ -2,7 +2,7 @@
 
 package com.tlw.androidrecap
 
-import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -116,13 +116,43 @@ fun HomeScreen() {
                 ) {
                     Text("GREETINGS")
                 }
+                //Explicit Intent
                 Button(onClick = {
                     val intent = Intent(context, ActivityLifecycle::class.java)
                     context.startActivity(intent)
-                    context as Activity
+//                    context as Activity
 //                    context.finish()
                 }) {
                     Text("ACTIVITY LIFECYCLE")
+                }
+                Button(onClick = {
+                    Intent(Intent.ACTION_MAIN).also {
+                        it.`package` = "com.google.android.youtube"
+                        try {
+                            context.startActivity(it)
+                        } catch (e: ActivityNotFoundException) {
+                            showSnackBar("App not found\nError: ${e.message}", scope, snackbarHostState)
+                        }
+                    }
+                }) {
+                    Text("Open Youtube")
+                }
+                //Implicit Intent
+                Button(onClick = {
+                    val intent = Intent(Intent.ACTION_SEND).also {
+                        it.type = "text/plain"
+
+                        it.putExtra(Intent.EXTRA_EMAIL, arrayOf("ashifali3147@gmail.com"))
+                        it.putExtra(Intent.EXTRA_SUBJECT, "Android Basic Mail")
+                        it.putExtra(Intent.EXTRA_TEXT, "This a test email.\nWhere I am trying to learn about implicit intent by sending this email using.")
+                    }
+                    if (intent.resolveActivity(context.packageManager) != null) {
+                        context.startActivity(intent)
+                    } else {
+                        showSnackBar("No supported app found!", scope, snackbarHostState)
+                    }
+                }) {
+                    Text("Send Mail")
                 }
             }
         }
