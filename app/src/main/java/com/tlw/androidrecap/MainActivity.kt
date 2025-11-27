@@ -137,6 +137,23 @@ fun HomeScreen() {
                 }) {
                     Text("Open Youtube")
                 }
+                //Implicit Intent
+                Button(onClick = {
+                    val intent = Intent(Intent.ACTION_SEND).also {
+                        it.type = "text/plain"
+
+                        it.putExtra(Intent.EXTRA_EMAIL, arrayOf("ashifali3147@gmail.com"))
+                        it.putExtra(Intent.EXTRA_SUBJECT, "Android Basic Mail")
+                        it.putExtra(Intent.EXTRA_TEXT, "This a test email.\nWhere I am trying to learn about implicit intent by sending this email using.")
+                    }
+                    if (intent.resolveActivity(context.packageManager) != null) {
+                        context.startActivity(intent)
+                    } else {
+                        showSnackBar("No supported app found!", scope, snackbarHostState)
+                    }
+                }) {
+                    Text("Send Mail")
+                }
             }
         }
     }
