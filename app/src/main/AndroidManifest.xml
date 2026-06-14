@@ -21,14 +21,21 @@
         android:theme="@style/Theme.AndroidRecap"
         tools:targetApi="31">
         <activity
+            android:name=".basic.ContentProviderActivity"
+            android:exported="false"
+            android:label="@string/title_activity_content_provider"
+            android:theme="@style/Theme.AndroidRecap" />
+        <activity
             android:name=".basic.IntentFilterActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="image/*"/>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
         <activity
