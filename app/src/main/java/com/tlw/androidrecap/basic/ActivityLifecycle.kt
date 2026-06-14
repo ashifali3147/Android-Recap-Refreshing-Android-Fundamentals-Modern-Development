@@ -52,6 +52,6 @@ class ActivityLifecycle : AppCompatActivity() {
     }
 
     fun showLog(message: String) {
-        Log.i("[DEBUG - 2]", "Activity2 Lifecycle: $message")
+        Log.i("[DEBUG]", "Activity2 Lifecycle: $message")
     }
 }
