@@ -30,6 +30,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.tlw.androidrecap.basic.ActivityLifecycle
+import com.tlw.androidrecap.basic.ContentProviderActivity
 import com.tlw.androidrecap.ui.theme.AndroidRecapTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -106,9 +107,9 @@ fun HomeScreen() {
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
-            Column {
+            Column{
                 Button(
                     onClick = {
                         showSnackBar("Hi", scope, snackbarHostState)
@@ -153,6 +154,16 @@ fun HomeScreen() {
                     }
                 }) {
                     Text("Send Mail")
+                }
+
+                //Content Providers
+                Button(
+                    onClick = {
+                        val intent = Intent(context, ContentProviderActivity::class.java)
+                        context.startActivity(intent)
+                    }
+                ) {
+                    Text("Content Provider")
                 }
             }
         }
